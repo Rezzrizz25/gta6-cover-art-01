@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style poster maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>VICE COVER STUDIO</h1>
+      <p class="tagline">Your photos, GTA-poster style. 1–4 panels, sunset or neon grade, bold lettering — exported as PNG. Runs offline; photos never leave this machine.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <label class="upload">Add your photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="hint">Or tap a sample. Drag the preview to reposition, scroll to zoom.</p>
+      <div id="samples" class="samples" role="group" aria-label="Sample photos"></div>
+      <div id="panel-tabs" class="tabs" role="group" aria-label="Panels"></div>
+      <div class="row">
+        <button id="add-panel" type="button">+ Panel</button>
+        <button id="remove-panel" type="button">− Panel</button>
+        <button id="fit-panel" type="button">Fit</button>
+      </div>
+      <label>Panel photo
+        <select id="panel-photo"></select>
+      </label>
+      <label>Panel grade
+        <select id="panel-grade">
+          <option value="">Same as cover</option>
+          <option value="sunset">Vice City Sunset</option>
+          <option value="neon">Neon Night</option>
+          <option value="palm">Palm Dusk</option>
+        </select>
+      </label>
+      <label>Zoom <span id="zoom-val">100%</span>
+        <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1">
+      </label>
+      <label>Pan X
+        <input id="pan-x" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <label>Pan Y
+        <input id="pan-y" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>2 · Colour grade</h2>
+      <div id="grades" class="grades" role="group" aria-label="Colour grade"></div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Lettering</h2>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="SUNSET HEIST">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="NEON BOULEVARD">
+      </label>
+      <label>Title size <span id="title-size-val">100%</span>
+        <input id="title-size" type="range" min="0.6" max="1.6" step="0.05" value="1">
+      </label>
+      <label>Title position
+        <select id="title-pos">
+          <option value="bottom">Bottom</option>
+          <option value="top">Top</option>
+          <option value="center">Center</option>
+        </select>
+      </label>
+      <label class="check"><input id="banner" type="checkbox" checked> Diagonal banner behind title</label>
+      <label class="check"><input id="palms" type="checkbox" checked> Palm silhouettes</label>
+    </section>
+
+    <section class="group">
+      <h2>4 · Export</h2>
+      <div class="row sizes">
+        <button type="button" data-size="1080x1080" class="active">1080 × 1080</button>
+        <button type="button" data-size="1080x1350">1080 × 1350</button>
+        <button type="button" data-size="1920x1080">1920 × 1080</button>
+      </div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <button id="quick-export" type="button">One-click: sample cover + export</button>
+      <p id="status" role="status"></p>
+    </section>
+  </section>
+
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+    <p class="preview-hint">Live preview — drag a panel to move its photo, scroll over it to zoom.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
