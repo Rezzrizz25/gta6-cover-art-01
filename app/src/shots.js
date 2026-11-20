@@ -1,14 +1,17 @@
 // Fixed scenes for screenshots.
 // ?shot=cover shows the exported cover alone; ?shot=editor shows the app
 // with photos loaded. Query params: panels (comma list of sample ids),
-// grade (sunset|neon|palm), caption (title), subtitle, size (1080x1080,
-// 1080x1350, 1920x1080), pos (top|center|bottom), banner (0|1), palms (0|1).
+// grade (sunset|neon|palm|vice), caption (title), subtitle, size (1080x1080,
+// 1080x1350, 1920x1080), pos (top|center|bottom), banner (0|1), palms (0|1),
+// pans (comma list of per-panel vertical pan offsets, -1..1, to keep faces
+// in frame when a wide panel crops a tall photo).
 // window.__shotReady is set once the scene is painted.
 export async function runShot(shot, query, applyPreset) {
   if (shot === 'cover') document.body.classList.add('shot-cover');
+  const pans = (query.get('pans') || '').split(',').map((s) => Number(s) || 0);
   const panels = (query.get('panels') || 'neon-street,sunset-convertible,boulevard,pier')
     .split(',').map((s) => s.trim()).filter(Boolean)
-    .map((id) => `samples/${id}.jpg`);
+    .map((id, i) => ({ src: `samples/${id}.jpg`, oy: pans[i] || 0 }));
   await applyPreset({
     size: query.get('size') || '1080x1080',
     grade: query.get('grade') || 'sunset',

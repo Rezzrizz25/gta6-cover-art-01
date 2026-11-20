@@ -4,6 +4,8 @@
 // Photos never leave the machine: uploads use object URLs, samples are
 // local files, export renders an offscreen canvas and downloads a PNG.
 // A `?shot=` query sets up a fixed scene for a screenshot (./shots.js).
+// Shortcuts: Ctrl/Cmd+E exports the current cover; D duplicates the
+// selected panel (max 4 panels).
 
 import { drawCover, GRADES, SIZES, layoutPanels } from './cover.js';
 import { runShot } from './shots.js';
@@ -73,7 +75,9 @@ export async function applyPreset(preset) {
   if (preset.banner !== undefined) state.banner = preset.banner;
   if (preset.palms !== undefined) state.palms = preset.palms;
   if (preset.panels) {
-    state.panels = preset.panels.map((src) => ({ src, zoom: 1, ox: 0, oy: 0, grade: null }));
+    state.panels = preset.panels.map((p) => (typeof p === 'string'
+      ? { src: p, zoom: 1, ox: 0, oy: 0, grade: null }
+      : { src: p.src, zoom: p.zoom ?? 1, ox: p.ox ?? 0, oy: p.oy ?? 0, grade: p.grade ?? null }));
     state.selected = 0;
   }
   syncControls();
@@ -99,6 +103,18 @@ export async function exportCover(sizeKey) {
       resolve(a.download);
     }, 'image/png');
   });
+}
+
+/** Copies the selected panel (photo, crop and grade) as a new panel. */
+export function duplicatePanel() {
+  if (state.panels.length >= 4) return false;
+  const copy = { ...state.panels[state.selected] };
+  state.panels.splice(state.selected + 1, 0, copy);
+  state.selected = state.selected + 1;
+  buildPanelTabs();
+  syncPanelControls();
+  redraw();
+  return true;
 }
 
 function applySize() {
@@ -165,6 +181,7 @@ function buildPanelTabs() {
   });
   document.getElementById('add-panel').disabled = state.panels.length >= 4;
   document.getElementById('remove-panel').disabled = state.panels.length <= 1;
+  document.getElementById('duplicate-panel').disabled = state.panels.length >= 4;
 }
 
 function syncPanelControls() {
@@ -268,6 +285,9 @@ function bindControls() {
     syncPanelControls();
     redraw();
   });
+  document.getElementById('duplicate-panel').addEventListener('click', () => {
+    if (duplicatePanel()) setStatus(`Panel ${state.selected + 1} duplicated.`);
+  });
 
   document.getElementById('title').addEventListener('input', (e) => { state.title = e.target.value; redraw(); });
   document.getElementById('subtitle').addEventListener('input', (e) => { state.subtitle = e.target.value; redraw(); });
@@ -295,6 +315,17 @@ function bindControls() {
       panels: SAMPLES.map((s) => s.src),
     });
     await exportCover('1080x1080');
+  });
+
+  // Keyboard shortcuts: Ctrl/Cmd+E exports, D duplicates the selected panel.
+  document.addEventListener('keydown', (e) => {
+    const typing = /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement?.tagName || '');
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'e' || e.key === 'E')) {
+      e.preventDefault();
+      exportCover(state.size);
+    } else if (!typing && (e.key === 'd' || e.key === 'D')) {
+      if (duplicatePanel()) setStatus(`Panel ${state.selected + 1} duplicated.`);
+    }
   });
 
   // Drag to pan the selected panel, wheel to zoom it.

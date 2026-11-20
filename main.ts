@@ -5,7 +5,7 @@
 // beside this file to /output and writes /output/dossier.json, the summary the
 // judge reads, with the vendored make.fun library. The app itself is a
 // multi-panel GTA-poster-style cover maker: 1-4 photo panels with drag/zoom
-// cropping, three canvas colour grades, bold stroked lettering with a diagonal
+// cropping, four canvas colour grades, bold stroked lettering with a diagonal
 // banner, and PNG export in 1080x1080, 1080x1350 and 1920x1080.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.

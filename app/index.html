@@ -24,6 +24,7 @@
       <div id="panel-tabs" class="tabs" role="group" aria-label="Panels"></div>
       <div class="row">
         <button id="add-panel" type="button">+ Panel</button>
+        <button id="duplicate-panel" type="button" title="Copy the selected panel (D)">⧉ Duplicate</button>
         <button id="remove-panel" type="button">− Panel</button>
         <button id="fit-panel" type="button">Fit</button>
       </div>
@@ -36,6 +37,7 @@
           <option value="sunset">Vice City Sunset</option>
           <option value="neon">Neon Night</option>
           <option value="palm">Palm Dusk</option>
+          <option value="vice">Vice Glow</option>
         </select>
       </label>
       <label>Zoom <span id="zoom-val">100%</span>
@@ -85,6 +87,7 @@
       </div>
       <button id="export" type="button" class="primary">Export PNG</button>
       <button id="quick-export" type="button">One-click: sample cover + export</button>
+      <p class="hint">Shortcut: Ctrl/Cmd+E exports, D duplicates the selected panel.</p>
       <p id="status" role="status"></p>
     </section>
   </section>

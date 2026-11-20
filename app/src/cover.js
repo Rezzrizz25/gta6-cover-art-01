@@ -32,6 +32,14 @@ export const GRADES = {
     glow: 'rgba(255, 214, 130, 0.26)',
     accent: '#ffb74d',
   },
+  vice: {
+    label: 'Vice Glow',
+    filter: 'saturate(1.45) contrast(1.10) brightness(1.00) hue-rotate(-12deg)',
+    top: 'rgba(124, 58, 237, 0.30)',
+    bottom: 'rgba(255, 46, 136, 0.38)',
+    glow: 'rgba(168, 85, 247, 0.32)',
+    accent: '#c084fc',
+  },
 };
 
 export const SIZES = {

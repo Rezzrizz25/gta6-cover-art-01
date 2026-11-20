@@ -45,6 +45,7 @@ button.active { border-color: var(--pink); background: #3a1a4d; }
 .preview canvas { max-width: 100%; max-height: calc(100vh - 90px); width: auto; height: auto; box-shadow: 0 12px 44px rgba(0,0,0,0.6); border-radius: 4px; background: #2b1838; cursor: grab; }
 .preview canvas:active { cursor: grabbing; }
 .preview-hint { margin: 0; color: var(--muted); font-size: 13px; }
+button:focus-visible, input:focus-visible, select:focus-visible, .upload:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 /* Screenshot scenes: cover alone, centred on black, aspect preserved by JS. */
 body.shot-cover { background: #000; }
 body.shot-cover .controls, body.shot-cover .preview-hint { display: none; }
