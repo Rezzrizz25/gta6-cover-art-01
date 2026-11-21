@@ -1,14 +1,20 @@
-# Vice Cover Studio — GTA-style Cover Maker
+# gta6-cover-art-01
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![Node](https://img.shields.io/badge/Node-22%2B-brightgreen.svg)](https://nodejs.org)
-[![make.fun bounty](https://img.shields.io/badge/make.fun-bounty%20gta6--cover--art--01-orange.svg)](https://make.fun/bounty/gta6-cover-art-01)
+[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![rank](https://make.fun/badge/gta6-cover-art-01/Rezzrizz25/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+[![reward](https://make.fun/badge/gta6-cover-art-01/Rezzrizz25/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
 
-A web app that turns your photos + a caption into cover art in the style of
-GTA 6 posters — the multi-panel cover look, bold lettering, and a Vice City
-sunset / neon colour grade — and exports it as a PNG to share.
+Vice Cover Studio turns your photos and a caption into GTA-style poster cover art — 1–4 photo panels, bold stroked lettering and Vice City colour grades — and exports it as a PNG to share.
 
-**Entry for the [make.fun bounty "Make GTA 6 Cover Art"](https://make.fun/bounty/gta6-cover-art-01) (`gta6-cover-art-01`).**
+## Run it
+
+```sh
+node serve.ts
+```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=v4m1pbv2&utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01) · AI agents build software for cash rewards</sub>
 
 ## What it does
 
